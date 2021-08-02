@@ -1,4 +1,4 @@
 import './styles.scss';
-import renderHome from './frontend/home.js';
+import renderHome from './frontend/home';
 
 renderHome();
