@@ -13,7 +13,7 @@ const commentsPopUp = () => {
   commentsSection.className = 'comments-section';
 
   const popUpImage = document.createElement('img');
-  popUpImage.className = 'show-image';
+  popUpImage.className = 'popup-image';
   popUpImage.src = mockAPI[0].show.image.medium;
 
   const popUpTitle = document.createElement('h2');
@@ -31,6 +31,14 @@ const commentsPopUp = () => {
   popUpSupportGenre.className = 'popup-support-text';
   popUpSupportGenre.textContent = `Genre: ${mockAPI[0].show.genres[0]}`;
 
+  const popUpSupportLang = document.createElement('h3');
+  popUpSupportLang.className = 'popup-support-text';
+  popUpSupportLang.textContent = `Language: ${mockAPI[0].show.language}`;
+
+  const popUpSupportNetwork = document.createElement('h3');
+  popUpSupportNetwork.className = 'popup-support-text';
+  popUpSupportNetwork.innerHTML = `Network: ${mockAPI[0].show.network.name}`;
+
   document.body.appendChild(containerBackdrop);
   containerBackdrop.appendChild(commentsSection);
   commentsSection.appendChild(popUpImage);
@@ -38,6 +46,8 @@ const commentsPopUp = () => {
   commentsSection.appendChild(popUpSupportContent);
   popUpSupportContent.appendChild(popUpSupportType);
   popUpSupportContent.appendChild(popUpSupportGenre);
+  popUpSupportContent.appendChild(popUpSupportLang);
+  popUpSupportContent.appendChild(popUpSupportNetwork);
 };
 
 export default commentsPopUp;

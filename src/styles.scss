@@ -89,10 +89,26 @@ footer {
 
 .comments-section {
   background: #fff;
+  border: 2px solid $p-color;
+  box-sizing: border-box;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 60%;
-  height: 60%;
+  padding: 18px;
+}
+
+.popup-image {
+  display: block;
+  margin: 18px auto;
+}
+
+.popup-title {
+  text-align: center;
+}
+
+.popup-support-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
