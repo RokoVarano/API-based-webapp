@@ -1,13 +1,7 @@
 import commentsPopUp from './comments';
 
-const heartSwitch = (likesheart) => {
-  if (likesheart.getAttribute('like') === 'off') {
-    likesheart.classList.remove('far');
-    likesheart.classList.add('fas');
-  } else if (likesheart.getAttribute('like') === 'on') {
-    likesheart.classList.remove('fas');
-    likesheart.classList.add('far');
-  }
+const addLike = () => {
+  console.log('<3');
 };
 
 const createCard = (object) => {
@@ -33,15 +27,10 @@ const createCard = (object) => {
   const likescount = document.createElement('p');
   likescount.classList.add('tv-likescount');
   likescount.innerText = '0'; // TODO: Set from API
-
   const likesheart = document.createElement('i');
-  likesheart.setAttribute('like', 'on'); // TODO: Set from API
-  heartSwitch(likesheart);
-  likesheart.classList.add('fa-heart');
+  likesheart.classList.add('fas', 'fa-heart');
   likesheart.addEventListener('click', () => {
-    heartSwitch(likesheart);
-    likesheart.setAttribute('like',
-      likesheart.getAttribute('like') === 'off' ? 'on' : 'off');
+    addLike(likesheart);
   });
   likes.appendChild(likescount);
   likes.appendChild(likesheart);
