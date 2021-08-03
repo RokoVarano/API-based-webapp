@@ -1,4 +1,5 @@
 import commentsPopUp from './comments';
+
 const root = document.getElementById('root');
 
 const header = `

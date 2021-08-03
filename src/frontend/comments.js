@@ -24,7 +24,7 @@ const commentsPopUp = () => {
   popUpSupportContent.className = 'popup-support-content';
 
   const popUpSupportType = document.createElement('h3');
-  popUpSupportType.className = 'popup-support-text'
+  popUpSupportType.className = 'popup-support-text';
   popUpSupportType.textContent = `Show Type: ${mockAPI[0].show.type}`;
 
   const popUpSupportGenre = document.createElement('h3');
