@@ -1,5 +1,4 @@
 const commentsPopUp = (object) => {
-  console.log(object);
   const containerBackdrop = document.createElement('div');
   containerBackdrop.className = 'backdrop';
   containerBackdrop.addEventListener('click', (e) => {
