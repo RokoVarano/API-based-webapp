@@ -49,7 +49,7 @@ const createCard = (object) => {
   const detailsbtn = document.createElement('button');
   detailsbtn.classList.add('tv-detailsbtn');
   detailsbtn.innerText = 'Details';
-  detailsbtn.addEventListener('click', commentsPopUp(object));
+  detailsbtn.addEventListener('click', () => commentsPopUp(object));
 
   buttons.appendChild(title);
   buttons.appendChild(likes);
