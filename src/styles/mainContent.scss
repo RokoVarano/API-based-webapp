@@ -1,0 +1,42 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
+$picture-width: 90px;
+
+main {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+
+  .tv-show {
+    display: flex;
+    margin: 0.3rem;
+    border: 1px $p-color solid;
+  }
+
+  .tv-pic {
+    width: $picture-width;
+    height: $picture-width * 1.47;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .tv-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 1.3 * $picture-width;
+    margin: 0.5rem;
+  }
+
+  .tv-title,
+  .tv-likescount {
+    margin: 0;
+  }
+
+  .tv-likes {
+    display: flex;
+    justify-content: space-around;
+    font-size: $p-size * 2.5;
+  }
+}
