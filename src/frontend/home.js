@@ -1,3 +1,4 @@
+import commentsPopUp from './comments';
 const root = document.getElementById('root');
 
 const header = `
@@ -12,7 +13,9 @@ const header = `
 `;
 
 const main = `
-<main></main>
+<main>
+<button id="button">CLICK</button>
+</main>
 `;
 
 const footer = `
@@ -25,6 +28,9 @@ const renderHome = () => {
   root.insertAdjacentHTML('beforeend', header);
   root.insertAdjacentHTML('beforeend', main);
   root.insertAdjacentHTML('beforeend', footer);
+
+  const button = document.getElementById('button');
+  button.addEventListener('click', commentsPopUp);
 };
 
 export default renderHome;
