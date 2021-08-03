@@ -1,4 +1,6 @@
 import commentsPopUp from './comments';
+import loadTvCards from './mainContent';
+import mockAPI from '../backend/mockAPI';
 
 const root = document.getElementById('root');
 
@@ -15,7 +17,6 @@ const header = `
 
 const main = `
 <main>
-<button id="button">CLICK</button>
 </main>
 `;
 
@@ -30,8 +31,7 @@ const renderHome = () => {
   root.insertAdjacentHTML('beforeend', main);
   root.insertAdjacentHTML('beforeend', footer);
 
-  const button = document.getElementById('button');
-  button.addEventListener('click', commentsPopUp);
+  loadTvCards(mockAPI);
 };
 
 export default renderHome;

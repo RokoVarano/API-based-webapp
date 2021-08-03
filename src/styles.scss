@@ -1,3 +1,5 @@
+@import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
+
 $p-color: black;
 $p-size: 10px;
 $p-font: monospace, sans-serif;
@@ -108,3 +110,5 @@ footer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
+
+@import './styles/mainContent.scss';
