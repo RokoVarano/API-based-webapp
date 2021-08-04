@@ -1,23 +1,24 @@
+/**
+ * @jest-environment jsdom
+ */
 import mockAPI from '../backend/mockAPI';
-import renderHome from '../frontend/home';
+import { loadCounter } from '../frontend/mainContent';
 
 describe('homepage list', () => {
-  renderHome();
-  const main = document.getElementsByTagName('main')[0];
+  const main = document.createElement('main');
 
-  it('creates one container per element with class="tv-show"', () => {
-    const showlengths = main.getElementsByClassName('tv-show').length;
+  it('displays the number of tv shows at the top', () => {
+    main.appendChild(loadCounter(mockAPI.length));
 
-    expect(mockAPI.lengths).toBe(showlengths);
-  });
-
-  it('each container has a picture of class "tv-pic" and they are all the same size"', () => {
-    const shows = main.getElementsByClassName('tv-show');
-    const sizeX = shows[0].getElementsByClassName('tv-pic').offsetWidth;
-    const sizeY = shows[0].getElementsByClassName('tv-pic').offsetHeight;
-    shows.forEach((show) => {
-      expect(show.getElementsByClassName('tv-pic')[0].offsetWidth).toBe(sizeX);
-      expect(show.getElementsByClassName('tv-pic')[0].offsetHeight).toBe(sizeY);
+    mockAPI.forEach(() => {
+      const article = document.createElement('article');
+      article.classList.add('tv-show');
+      main.appendChild(article);
     });
+
+    expect(main.childNodes[0].textContent).toBe(`Shows: ${main.getElementsByClassName('tv-show').length}`);
+    expect(main.childNodes[0].id).toBe('tv-counter');
+
+    main.innerHTML = '';
   });
 });

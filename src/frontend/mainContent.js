@@ -5,7 +5,7 @@ import Likes from '../backend/likesAPI';
 const loadCounter = (number) => {
   const display = document.createElement('h3');
   display.id = 'tv-counter';
-  display.innerText = `Shows: ${number}`;
+  display.textContent = `Shows: ${number}`;
 
   return display;
 };
@@ -86,6 +86,6 @@ const loadTvCards = (objects) => {
     );
 };
 
-export default loadTvCards;
+export { loadTvCards, loadCounter };
 
 /* eslint-disable prefer-destructuring */

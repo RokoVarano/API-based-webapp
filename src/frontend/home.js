@@ -1,4 +1,4 @@
-import loadTvCards from './mainContent';
+import { loadTvCards } from './mainContent';
 import mockAPI from '../backend/mockAPI';
 
 const root = document.getElementById('root');
