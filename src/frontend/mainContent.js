@@ -72,9 +72,7 @@ const loadTvCards = (objects) => {
   const main = document.getElementsByTagName('main')[0];
   main.appendChild(loadCounter(objects.length));
   const likeAPI = new Likes();
-  likeAPI.createApp()
-    .then(() => likeAPI.post('chicken'))
-    .then(() => likeAPI.get())
+  likeAPI.get()
     .then(
       (result) => {
         objects.forEach((object) => {

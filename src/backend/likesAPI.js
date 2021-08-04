@@ -1,6 +1,6 @@
 class Likes {
   constructor() {
-    this.app_id = '';
+    this.app_id = 'ii8LIjuMgMowiRTVEPsx';
   }
 
   createApp = async () => {
