@@ -99,6 +99,12 @@ const commentsPopUp = (object) => {
       addCommentSubmitBtn.id = 'add-comment-btn';
       addCommentSubmitBtn.className = 'add-comment-btn';
       addCommentSubmitBtn.textContent = 'Comment';
+      addCommentSubmitBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const userName = addCommentInputName.value;
+        const message = addCommentInputMess.value;
+        involvement.createNewComment(object.show.id, userName, message);
+      });
       addCommentForm.appendChild(addCommentSubmitBtn);
     });
 
