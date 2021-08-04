@@ -65,15 +65,15 @@ const loadTvCards = (objects) => {
   const likeAPI = new Likes();
   likeAPI.createApp();
 
-  objects.forEach((object) => {
-    likeAPI.get().then(
-      (result) => {
+  likeAPI.get().then(
+    (result) => {
+      objects.forEach((object) => {
         const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
         object.likes = objlikes === undefined ? 0 : objlikes.likes;
         main.appendChild(createCard(object, likeAPI));
-      },
-    );
-  });
+      });
+    },
+  );
 };
 
 export default loadTvCards;
