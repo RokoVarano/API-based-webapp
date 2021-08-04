@@ -20,24 +20,20 @@ class Likes {
     this.app_id = data;
   }
 
-  post = async (itemId) => {
-    await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${this.app_id}/likes/`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          item_id: itemId,
-        }),
-      });
-  }
+  post = async (itemId) => fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${this.app_id}/likes/`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        item_id: itemId,
+      }),
+    });
 
-  get = async () => {
-    const result = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${this.app_id}/likes/`);
-
-    return result.json();
-  }
+  get = async () => fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${this.app_id}/likes/`).then(
+    (result) => result.json(),
+  )
 }
 
 export default Likes;

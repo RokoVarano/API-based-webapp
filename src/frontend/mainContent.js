@@ -63,17 +63,18 @@ const createCard = (object, likeAPI) => {
 const loadTvCards = (objects) => {
   const main = document.getElementsByTagName('main')[0];
   const likeAPI = new Likes();
-  likeAPI.createApp();
-
-  likeAPI.get().then(
-    (result) => {
-      objects.forEach((object) => {
-        const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
-        object.likes = objlikes === undefined ? 0 : objlikes.likes;
-        main.appendChild(createCard(object, likeAPI));
-      });
-    },
-  );
+  likeAPI.createApp()
+    .then(() => likeAPI.post('chicken'))
+    .then(() => likeAPI.get())
+    .then(
+      (result) => {
+        objects.forEach((object) => {
+          const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
+          object.likes = objlikes === undefined ? 0 : objlikes.likes;
+          main.appendChild(createCard(object, likeAPI));
+        });
+      },
+    );
 };
 
 export default loadTvCards;
