@@ -46,10 +46,11 @@ const commentsPopUp = (object) => {
   popUpCommentsTitle.className = 'comments-title';
   popUpCommentsTitle.textContent = 'Comments';
 
-  involvement.getComments(9709)
+  involvement.getComments(object.show.id)
   .then((comments) => {
     if (comments.length > 0) {
       for (const comment of comments) {
+        comment.creation_date = comment.creation_date.replace('-', '/').replace('-', '/');
         const displayComment = document.createElement('p');
         displayComment.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
         popUpComments.appendChild(displayComment);
