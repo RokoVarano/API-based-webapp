@@ -32,18 +32,17 @@ const createCard = (object, likeAPI) => {
 
     likesheart.setAttribute('loading', 'on');
     likesheart.style.opacity = 0.5;
-    Promise.resolve(likeAPI.post(object.show.id)).then(() => {
-      likeAPI.get().then(
-        (result) => {
-          const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
-          object.likes = objlikes === undefined ? 0 : objlikes.likes;
-          likescount.innerText = object.likes;
-          likesheart.style.opacity = 1;
-          likesheart.setAttribute('loading', 'off');
-        },
-      );
-    });
+    Promise.resolve(likeAPI.post(object.show.id))
+      .then(() => likeAPI.get())
+      .then((result) => {
+        const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
+        object.likes = objlikes === undefined ? 0 : objlikes.likes;
+        likescount.innerText = object.likes;
+        likesheart.style.opacity = 1;
+        likesheart.setAttribute('loading', 'off');
+      });
   });
+
   likes.appendChild(likescount);
   likes.appendChild(likesheart);
 
