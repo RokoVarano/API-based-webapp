@@ -30,9 +30,13 @@ const involvement = {
     }
   },
   async getComments(itemID) {
-    const rawResp = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments?item_id=${itemID}`);
-    const comments = await rawResp.json();
-    return comments;
+    try {
+      const rawResp = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments?item_id=${itemID}`);
+      const comments = await rawResp.json();
+      return comments;
+    } catch (error) {
+      throw new Error(error);
+    }
   },
 };
 
