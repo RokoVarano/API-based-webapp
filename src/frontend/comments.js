@@ -47,16 +47,16 @@ const commentsPopUp = (object) => {
   popUpCommentsTitle.textContent = 'Comments';
 
   involvement.getComments(object.show.id)
-  .then((comments) => {
-    if (comments.length > 0) {
-      for (const comment of comments) {
-        comment.creation_date = comment.creation_date.replace('-', '/').replace('-', '/');
-        const displayComment = document.createElement('p');
-        displayComment.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
-        popUpComments.appendChild(displayComment);
+    .then((comments) => {
+      if (comments.length > 0) {
+        for (let i = 0; i < comments.length; i += 1) {
+          comments[i].creation_date = comments[i].creation_date.replace('-', '/').replace('-', '/');
+          const displayComment = document.createElement('p');
+          displayComment.textContent = `${comments[i].creation_date} ${comments[i].username}: ${comments[i].comment}`;
+          popUpComments.appendChild(displayComment);
+        }
       }
-    }
-  });
+    });
 
   document.body.appendChild(containerBackdrop);
   containerBackdrop.appendChild(commentsSection);

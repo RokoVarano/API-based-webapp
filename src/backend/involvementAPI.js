@@ -1,6 +1,6 @@
 const involvement = {
   appURL: 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments',
-  createNewApp: async () => {
+  async createNewApp() {
     const rawResp = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
       method: 'POST',
       headers: {
@@ -12,7 +12,7 @@ const involvement = {
 
     return newAppID;
   },
-  createNewComment: async function(commID, commUserName, comm) {
+  async createNewComment(commID, commUserName, comm) {
     const rawResp = await fetch(this.appURL, {
       method: 'POST',
       headers: {
@@ -29,7 +29,7 @@ const involvement = {
       throw new Error('Something went wrong when creating the new comment');
     }
   },
-  getComments: async function(itemID) {
+  async getComments(itemID) {
     const rawResp = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments?item_id=${itemID}`);
     const comments = await rawResp.json();
     return comments;
