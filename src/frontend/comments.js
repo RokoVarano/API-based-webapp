@@ -39,16 +39,18 @@ const commentsPopUp = (object) => {
   popUpSupportNetwork.className = 'popup-support-text';
   popUpSupportNetwork.innerHTML = `Network: ${object.show.network.name}`;
 
-  const popUpComments = document.createElement('div');
-  popUpComments.className = 'popup-comments';
-
-  const popUpCommentsTitle = document.createElement('h3');
-  popUpCommentsTitle.className = 'comments-title';
-  popUpCommentsTitle.textContent = 'Comments';
-
   involvement.getComments(object.show.id)
     .then((comments) => {
       if (comments.length > 0) {
+        const popUpComments = document.createElement('div');
+        popUpComments.className = 'popup-comments';
+        commentsSection.appendChild(popUpComments);
+
+        const popUpCommentsTitle = document.createElement('h3');
+        popUpCommentsTitle.className = 'comments-title';
+        popUpCommentsTitle.textContent = 'Comments';
+        popUpComments.appendChild(popUpCommentsTitle);
+
         for (let i = 0; i < comments.length; i += 1) {
           comments[i].creation_date = comments[i].creation_date.replace('-', '/').replace('-', '/');
           const displayComment = document.createElement('p');
@@ -56,6 +58,32 @@ const commentsPopUp = (object) => {
           popUpComments.appendChild(displayComment);
         }
       }
+    })
+    .then(() => {
+      const addComment = document.createElement('div');
+      addComment.className = 'add-comment';
+      commentsSection.appendChild(addComment);
+
+      const addCommentTitle = document.createElement('h3');
+      addCommentTitle.className = 'add-comment-title';
+      addCommentTitle.textContent = 'Add a comment';
+      addComment.appendChild(addCommentTitle);
+
+      const addCommentForm = document.createElement('form');
+      addCommentForm.id = 'form';
+      addCommentForm.className = 'form';
+      addComment.appendChild(addCommentForm);
+
+      const addCommentInputName = document.createElement('input');
+      addCommentInputName.type = 'text';
+      addCommentInputName.className = 'input-name';
+      addCommentInputName.placeholder = 'Your name';
+      addCommentForm.appendChild(addCommentInputName);
+
+      const addCommentInputMess = document.createElement('textarea');
+      addCommentInputMess.className = 'input-message';
+      addCommentInputMess.placeholder = 'Your insights';
+      addCommentForm.appendChild(addCommentInputMess);
     });
 
   document.body.appendChild(containerBackdrop);
@@ -67,8 +95,6 @@ const commentsPopUp = (object) => {
   popUpSupportContent.appendChild(popUpSupportGenre);
   popUpSupportContent.appendChild(popUpSupportLang);
   popUpSupportContent.appendChild(popUpSupportNetwork);
-  commentsSection.appendChild(popUpComments);
-  popUpComments.appendChild(popUpCommentsTitle);
 };
 
 export default commentsPopUp;
