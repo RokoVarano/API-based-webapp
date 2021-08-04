@@ -1,3 +1,5 @@
+import involvement from '../backend/involvementAPI';
+
 const commentsPopUp = (object) => {
   const containerBackdrop = document.createElement('div');
   containerBackdrop.className = 'backdrop';
@@ -21,21 +23,39 @@ const commentsPopUp = (object) => {
   const popUpSupportContent = document.createElement('div');
   popUpSupportContent.className = 'popup-support-content';
 
-  const popUpSupportType = document.createElement('h3');
+  const popUpSupportType = document.createElement('h4');
   popUpSupportType.className = 'popup-support-text';
   popUpSupportType.textContent = `Show Type: ${object.show.type}`;
 
-  const popUpSupportGenre = document.createElement('h3');
+  const popUpSupportGenre = document.createElement('h4');
   popUpSupportGenre.className = 'popup-support-text';
   popUpSupportGenre.textContent = `Genre: ${object.show.genres[0]}`;
 
-  const popUpSupportLang = document.createElement('h3');
+  const popUpSupportLang = document.createElement('h4');
   popUpSupportLang.className = 'popup-support-text';
   popUpSupportLang.textContent = `Language: ${object.show.language}`;
 
-  const popUpSupportNetwork = document.createElement('h3');
+  const popUpSupportNetwork = document.createElement('h4');
   popUpSupportNetwork.className = 'popup-support-text';
   popUpSupportNetwork.innerHTML = `Network: ${object.show.network.name}`;
+
+  const popUpComments = document.createElement('div');
+  popUpComments.className = 'popup-comments';
+
+  const popUpCommentsTitle = document.createElement('h3');
+  popUpCommentsTitle.className = 'comments-title';
+  popUpCommentsTitle.textContent = 'Comments';
+
+  involvement.getComments(9709)
+  .then((comments) => {
+    if (comments.length > 0) {
+      for (const comment of comments) {
+        const displayComment = document.createElement('p');
+        displayComment.textContent = `${comment.creation_date} ${comment.username}: ${comment.comment}`;
+        popUpComments.appendChild(displayComment);
+      }
+    }
+  });
 
   document.body.appendChild(containerBackdrop);
   containerBackdrop.appendChild(commentsSection);
@@ -46,6 +66,8 @@ const commentsPopUp = (object) => {
   popUpSupportContent.appendChild(popUpSupportGenre);
   popUpSupportContent.appendChild(popUpSupportLang);
   popUpSupportContent.appendChild(popUpSupportNetwork);
+  commentsSection.appendChild(popUpComments);
+  popUpComments.appendChild(popUpCommentsTitle);
 };
 
 export default commentsPopUp;

@@ -29,9 +29,11 @@ const involvement = {
       throw new Error('Something went wrong when creating the new comment');
     }
   },
-  getComments: async function() {
-    const rawResp = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments?item_id=9709');
+  getComments: async function(itemID) {
+    const rawResp = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/JCyDFdS4lOPMchZOqGGZ/comments?item_id=${itemID}`);
     const comments = await rawResp.json();
     return comments;
   },
 };
+
+export default involvement;
