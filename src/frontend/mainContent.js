@@ -1,10 +1,12 @@
+/* eslint-disable prefer-destructuring */
 import commentsPopUp from './comments';
+import Likes from '../backend/likesAPI';
 
-const addLike = () => {
-  console.log('<3');
+const addLike = (itemId, likeAPI) => {
+  likeAPI.post(itemId);
 };
 
-const createCard = (object) => {
+const createCard = (object, likeAPI) => {
   const article = document.createElement('article');
   article.id = `tv-${object.show.id}`;
   article.classList.add('tv-show');
@@ -26,11 +28,11 @@ const createCard = (object) => {
 
   const likescount = document.createElement('p');
   likescount.classList.add('tv-likescount');
-  likescount.innerText = '0'; // TODO: Set from API
+  likescount.innerText = object.likes; // TODO: Set from API
   const likesheart = document.createElement('i');
   likesheart.classList.add('fas', 'fa-heart');
   likesheart.addEventListener('click', () => {
-    addLike(likesheart);
+    addLike(object.show.id, likeAPI);
   });
   likes.appendChild(likescount);
   likes.appendChild(likesheart);
@@ -51,8 +53,20 @@ const createCard = (object) => {
 
 const loadTvCards = (objects) => {
   const main = document.getElementsByTagName('main')[0];
+  const likeAPI = new Likes();
+  likeAPI.createApp();
 
-  objects.forEach((object) => main.appendChild(createCard(object)));
+  objects.forEach((object) => {
+    likeAPI.get().then(
+      (result) => {
+        const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
+        object.likes = objlikes === undefined ? 0 : objlikes.likes;
+        main.appendChild(createCard(object, likeAPI));
+      },
+    );
+  });
 };
 
 export default loadTvCards;
+
+/* eslint-disable prefer-destructuring */
