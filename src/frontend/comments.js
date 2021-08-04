@@ -52,6 +52,7 @@ const commentsPopUp = (object) => {
         popUpComments.appendChild(popUpCommentsTitle);
 
         const popUpCommentsContainer = document.createElement('ul');
+        popUpCommentsContainer.id = 'comments-list';
         popUpCommentsContainer.className = 'comments-list';
         popUpComments.appendChild(popUpCommentsContainer);
 
@@ -62,6 +63,7 @@ const commentsPopUp = (object) => {
           popUpCommentsContainer.appendChild(listItem);
 
           const displayComment = document.createElement('p');
+          displayComment.className = 'comment';
           displayComment.textContent = `${comments[i].creation_date} ${comments[i].username}: ${comments[i].comment}`;
           listItem.appendChild(displayComment);
         }
@@ -103,7 +105,19 @@ const commentsPopUp = (object) => {
         e.preventDefault();
         const userName = addCommentInputName.value;
         const message = addCommentInputMess.value;
-        involvement.createNewComment(object.show.id, userName, message);
+        involvement.createNewComment(object.show.id, userName, message)
+          .then(() => {
+            involvement.getComments(object.show.id)
+              .then((raw) => {
+                const refreshedComments = raw;
+                const lastItem = raw.length - 1;
+                const commentsList = document.getElementById('comments-list');
+                const newCommentItem = document.createElement('p');
+                newCommentItem.className = 'comment';
+                newCommentItem.textContent = `${refreshedComments[lastItem].creation_date.replace('-', '/').replace('-', '/')} ${refreshedComments[lastItem].username}: ${refreshedComments[lastItem].comment}`;
+                commentsList.appendChild(newCommentItem);
+              });
+          });
       });
       addCommentForm.appendChild(addCommentSubmitBtn);
     });
