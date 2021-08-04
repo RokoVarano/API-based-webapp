@@ -51,11 +51,19 @@ const commentsPopUp = (object) => {
         popUpCommentsTitle.textContent = 'Comments';
         popUpComments.appendChild(popUpCommentsTitle);
 
+        const popUpCommentsContainer = document.createElement('ul');
+        popUpCommentsContainer.className = 'comments-list';
+        popUpComments.appendChild(popUpCommentsContainer);
+
         for (let i = 0; i < comments.length; i += 1) {
           comments[i].creation_date = comments[i].creation_date.replace('-', '/').replace('-', '/');
+          const listItem = document.createElement('li');
+          listItem.className = 'comm-list-item';
+          popUpCommentsContainer.appendChild(listItem);
+
           const displayComment = document.createElement('p');
           displayComment.textContent = `${comments[i].creation_date} ${comments[i].username}: ${comments[i].comment}`;
-          popUpComments.appendChild(displayComment);
+          listItem.appendChild(displayComment);
         }
       }
     })
@@ -65,7 +73,7 @@ const commentsPopUp = (object) => {
       commentsSection.appendChild(addComment);
 
       const addCommentTitle = document.createElement('h3');
-      addCommentTitle.className = 'add-comment-title';
+      addCommentTitle.className = 'comments-title';
       addCommentTitle.textContent = 'Add a comment';
       addComment.appendChild(addCommentTitle);
 
