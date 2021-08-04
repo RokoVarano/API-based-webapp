@@ -78,12 +78,20 @@ const commentsPopUp = (object) => {
       addCommentInputName.type = 'text';
       addCommentInputName.className = 'input-name';
       addCommentInputName.placeholder = 'Your name';
+      addCommentInputName.required = true;
       addCommentForm.appendChild(addCommentInputName);
 
       const addCommentInputMess = document.createElement('textarea');
       addCommentInputMess.className = 'input-message';
       addCommentInputMess.placeholder = 'Your insights';
+      addCommentInputMess.required = true;
       addCommentForm.appendChild(addCommentInputMess);
+
+      const addCommentSubmitBtn = document.createElement('button');
+      addCommentSubmitBtn.id = 'add-comment-btn';
+      addCommentSubmitBtn.className = 'add-comment-btn';
+      addCommentSubmitBtn.textContent = 'Comment';
+      addCommentForm.appendChild(addCommentSubmitBtn);
     });
 
   document.body.appendChild(containerBackdrop);
