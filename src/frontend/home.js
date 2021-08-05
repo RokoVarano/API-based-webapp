@@ -11,6 +11,7 @@ const header = `
       <li class="menu-item"><a href="#" id="pokemons" class="nav-pokemons">Shows</a></li>
     </ul>    
   </nav>
+  <div class='silver-bar'/>
 </header>
 `;
 
@@ -20,6 +21,7 @@ const main = `
 
 const footer = `
 <footer id='main-footer'>
+  <div class='silver-bar'/>
   <p id='copyright'>Created by Microverse under CC License</p>
 </footer>
 `;
