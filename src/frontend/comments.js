@@ -1,6 +1,12 @@
 import involvement from '../backend/involvementAPI';
 
 const commentsPopUp = (object) => {
+  const commentsCounter = (object) => {
+    const commentsNum = 0;
+    involvement.getComments(object.show.id)
+      .then((rawResp) => console.log(rawResp));
+  };
+
   const containerBackdrop = document.createElement('div');
   containerBackdrop.className = 'backdrop';
   containerBackdrop.addEventListener('click', (e) => {
@@ -111,11 +117,30 @@ const commentsPopUp = (object) => {
               .then((raw) => {
                 const refreshedComments = raw;
                 const lastItem = raw.length - 1;
-                const commentsList = document.getElementById('comments-list');
                 const newCommentItem = document.createElement('p');
                 newCommentItem.className = 'comment';
                 newCommentItem.textContent = `${refreshedComments[lastItem].creation_date.replace('-', '/').replace('-', '/')} ${refreshedComments[lastItem].username}: ${refreshedComments[lastItem].comment}`;
-                commentsList.appendChild(newCommentItem);
+
+                if (document.getElementById('comments-list') === null) {
+                  const popUpComments = document.createElement('div');
+                  popUpComments.className = 'popup-comments';
+                  commentsSection.insertBefore(popUpComments, addComment);
+
+                  const popUpCommentsTitle = document.createElement('h3');
+                  popUpCommentsTitle.className = 'comments-title';
+                  popUpCommentsTitle.textContent = 'Comments';
+                  popUpComments.appendChild(popUpCommentsTitle);
+
+                  const popUpCommentsContainer = document.createElement('ul');
+                  popUpCommentsContainer.id = 'comments-list';
+                  popUpCommentsContainer.className = 'comments-list';
+                  popUpComments.appendChild(popUpCommentsContainer);
+
+                  popUpCommentsContainer.appendChild(newCommentItem);
+                } else {
+                  const commentsList = document.getElementById('comments-list');
+                  commentsList.appendChild(newCommentItem);
+                }
               });
           });
       });
