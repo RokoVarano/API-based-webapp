@@ -38,8 +38,6 @@ footer,
 }
 
 footer {
-  position: absolute;
-  bottom: 0;
   background-image: linear-gradient($silver2, black);
 }
 
@@ -59,6 +57,7 @@ main {
   align-content: flex-start;
   align-self: flex-end;
   background: $main-bg-color;
+  overflow-y: auto;
 
   .tv-show {
     display: flex;
