@@ -33,7 +33,7 @@ const involvement = {
   },
 
   async createNewComment(commID, commUserName, comm) {
-    const rawResp = await fetch(this.appURL, {
+    const rawResp = await fetch(`${this.appURL}comments/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
