@@ -1,6 +1,6 @@
 /* eslint-disable prefer-destructuring */
 import commentsPopUp from './comments';
-import Likes from '../backend/likesAPI';
+import involvement from '../backend/involvementAPI';
 
 const loadCounter = (number) => {
   const display = document.createElement('h3');
@@ -10,7 +10,7 @@ const loadCounter = (number) => {
   return display;
 };
 
-const createCard = (object, likeAPI) => {
+const createCard = (object, involvement) => {
   const article = document.createElement('article');
   article.id = `tv-${object.show.id}`;
   article.classList.add('tv-show');
@@ -40,8 +40,8 @@ const createCard = (object, likeAPI) => {
 
     likesheart.setAttribute('loading', 'on');
     likesheart.style.opacity = 0.5;
-    Promise.resolve(likeAPI.post(object.show.id))
-      .then(() => likeAPI.get())
+    Promise.resolve(involvement.postLikes(object.show.id))
+      .then(() => involvement.getLikes())
       .then((result) => {
         const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
         object.likes = objlikes === undefined ? 0 : objlikes.likes;
@@ -71,14 +71,13 @@ const createCard = (object, likeAPI) => {
 const loadTvCards = (objects) => {
   const main = document.getElementsByTagName('main')[0];
   main.appendChild(loadCounter(objects.length));
-  const likeAPI = new Likes();
-  likeAPI.get()
+  involvement.getLikes()
     .then(
       (result) => {
         objects.forEach((object) => {
           const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
           object.likes = objlikes === undefined ? 0 : objlikes.likes;
-          main.appendChild(createCard(object, likeAPI));
+          main.appendChild(createCard(object, involvement));
         });
       },
     );
