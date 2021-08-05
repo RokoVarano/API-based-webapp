@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import mockAPI from '../backend/mockAPI';
+import mockAPI from './mockAPI';
 import { loadCounter } from '../frontend/mainContent';
 
 describe('homepage list', () => {
