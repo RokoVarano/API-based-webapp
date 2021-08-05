@@ -1,5 +1,5 @@
 import { loadTvCards } from './mainContent';
-import mockAPI from '../backend/mockAPI';
+import tvAPI from '../backend/tvAPI';
 
 const root = document.getElementById('root');
 
@@ -29,7 +29,7 @@ const renderHome = () => {
   root.insertAdjacentHTML('beforeend', main);
   root.insertAdjacentHTML('beforeend', footer);
 
-  loadTvCards(mockAPI);
+  tvAPI.get().then((content) => loadTvCards(content));
 };
 
 export default renderHome;

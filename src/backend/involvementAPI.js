@@ -14,7 +14,7 @@ const involvement = {
   },
 
   async postLike(itemId) {
-    fetch(`${this.appURL}likes/`,
+    return fetch(`${this.appURL}likes/`,
       {
         method: 'POST',
         headers: {

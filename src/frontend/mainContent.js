@@ -40,7 +40,7 @@ const createCard = (object, involvement) => {
 
     likesheart.setAttribute('loading', 'on');
     likesheart.style.opacity = 0.5;
-    Promise.resolve(involvement.postLikes(object.show.id))
+    Promise.resolve(involvement.postLike(object.show.id))
       .then(() => involvement.getLikes())
       .then((result) => {
         const objlikes = result.filter((item) => item.item_id === object.show.id)[0];
