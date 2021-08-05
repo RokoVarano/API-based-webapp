@@ -37,4 +37,10 @@ main {
     justify-content: space-around;
     font-size: $p-size * 2.5;
   }
+
+  #tv-counter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }

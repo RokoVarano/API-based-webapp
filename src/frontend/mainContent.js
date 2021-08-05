@@ -2,6 +2,14 @@
 import commentsPopUp from './comments';
 import Likes from '../backend/likesAPI';
 
+const loadCounter = (number) => {
+  const display = document.createElement('h3');
+  display.id = 'tv-counter';
+  display.textContent = `Shows: ${number}`;
+
+  return display;
+};
+
 const createCard = (object, likeAPI) => {
   const article = document.createElement('article');
   article.id = `tv-${object.show.id}`;
@@ -62,10 +70,9 @@ const createCard = (object, likeAPI) => {
 
 const loadTvCards = (objects) => {
   const main = document.getElementsByTagName('main')[0];
+  main.appendChild(loadCounter(objects.length));
   const likeAPI = new Likes();
-  likeAPI.createApp()
-    .then(() => likeAPI.post('chicken'))
-    .then(() => likeAPI.get())
+  likeAPI.get()
     .then(
       (result) => {
         objects.forEach((object) => {
@@ -77,6 +84,6 @@ const loadTvCards = (objects) => {
     );
 };
 
-export default loadTvCards;
+export { loadTvCards, loadCounter };
 
 /* eslint-disable prefer-destructuring */
