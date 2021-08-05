@@ -45,13 +45,12 @@ const involvement = {
 };
 
 const commentsCounter = (id) => {
-  involvement.getComments(id)
+  const num = involvement.getComments(id)
     .then((comments) => {
-      const commentsCounter = document.getElementById('comments-counter');
       const commentsNum = comments.length === undefined ? 0 : comments.length;
-      commentsCounter.textContent = `Comments (${commentsNum})`;
       return commentsNum;
     });
+  return num;
 };
 
 export default commentsCounter;
